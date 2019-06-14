@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Login and Register Page</title>
+    <style>
+    form{
+        display:inline-block;
+        vertical-align: top;
+    }
+    .red{
+        color:red;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login and Registration!</h1>
+        <form class="col-5" action="/register" method="post">
+            <h2>Register here!</h2>
+            <div class="form-group">
+                <label for="exampleInputEmail1">First Name:</label>
+                <input name="fname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter first name">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <small id="emailHelp" class="red form-text">{{ messages[0]}}</small>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Last Name:</label>
+                <input name="lname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter last name">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <small id="emailHelp" class="red form-text ">{{ messages[1]}}</small>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email:</label>
+                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <small id="emailHelp" class="red form-text">{{ messages[2]}}</small>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password:</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <small id="emailHelp" class="red form-text">{{messages[3]}}</small>
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Confirm password:</label>
+                <input name="confirm_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password Confirmation">
+            </div>
+            <button type="submit" class="btn btn-outline-success">Register</button>
+        </form>
+
+
+        <form class="col-5" action="/login" method="post">
+            <h2>Login here!</h2>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email:</label>
+                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password:</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-outline-success">Login</button>
+            
+        </form>
+    </div>
+</body>
+</html>

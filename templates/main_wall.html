@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Main Page</title>
+    <style>
+        .feed{
+            display:inline-block;
+            vertical-align: top;
+        }
+        .divider{
+            margin: 30px 60px;;
+            border-left: 2px solid black;
+            height: 500px;
+        }
+        .title{
+            display:inline-block;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+  <!-- Navbar content -->
+    <h1 class="navbar-text my-2 my-sm-0">Rapper's Feed</h1>
+    <h3 style="position:relative; left:20%;"class="navbar-text my-2 my-sm-0 float-right">What's <span class="text-success">gucci</span> {{session['first_name']}}?</h3>
+    <a href="/logout" class="btn btn-outline-success my-2 my-sm-0">Log out</a>
+    </nav>
+    <div class="contianer-fluid">
+        <div class="feed col-5" style="width: 35rem;">
+            <h3 class="px-2 mt-3" style="text-decoration: underline;">PEOPLE IN WHO SLID INTO YOUR DM</h3>
+
+            <div class="card-body">
+                <h5 class="card-title">Your boy said:</h5>
+                {% for post in posts %}
+                <div class="border border-dark rounded m-3 p-3">
+                <p class="card-text">"{{post['content']}}"</p>
+                <p class="card-text">From: {{post['first_name']}}</p>
+                <a class="text-success"href="/delete/{{post['id']}}">delete</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="feed divider"></div>
+        <div class="feed col-5" style="width: 35rem;">
+            <h3 class="px-2 mt-3" style="text-decoration: underline;">SLIDE INTO THE DM</h3>
+            {%for user in users %}
+            <form action="/create/{{user['id']}}" method='post' class="form-inline">
+            <div class="card-body">
+                <h5 class="title">{{user['first_name']}}</h5>
+                <input name='content' type="text" style='width:300px;' class="title input-mysize form-control" id="inputPassword2" placeholder="Enter text">
+            </div>
+            <button type="submit" class="title btn btn-outline-success mb-2">Send DM</button>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
